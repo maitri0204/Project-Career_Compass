@@ -1,14 +1,12 @@
-import { Router, Request, Response } from "express";
+import { Router } from "express";
+import authRoutes from "./authRoutes";
+import questionRoutes from "./questionRoutes";
+import testRoutes from "./testRoutes";
 
 const router = Router();
 
-// Health check
-router.get("/health", (_req: Request, res: Response) => {
-  res.status(200).json({
-    success: true,
-    message: "Career Compass API is running",
-    timestamp: new Date().toISOString(),
-  });
-});
+router.use("/auth", authRoutes);
+router.use("/questions", questionRoutes);
+router.use("/test", testRoutes);
 
 export default router;
