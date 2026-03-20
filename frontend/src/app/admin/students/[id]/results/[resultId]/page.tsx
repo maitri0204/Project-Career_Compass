@@ -13,6 +13,11 @@ const DIMENSION_COLORS: Record<string, { a: string; b: string }> = {
   "J/P": { a: "#00cec9", b: "#d63031" },
 };
 
+const LETTER_CODES: Record<string, string> = {
+  E: "SO", I: "RO", S: "PO", N: "CT",
+  T: "LD", F: "VD", J: "SW", P: "FW",
+};
+
 const PERSONALITY_CAREERS: Record<string, string[]> = {
   ISTJ: ["Chartered Accountant", "Auditor", "Financial Analyst", "Banking Officer", "Data Analyst", "Civil Engineer", "Operations Manager", "Risk Manager", "Compliance Officer", "Government Officer"],
   ISFJ: ["Nurse", "Teacher", "Counselor", "Physiotherapist", "Social Worker", "Occupational Therapist", "Child Development Specialist", "Healthcare Administrator", "Dietitian", "Community Service Manager"],
@@ -423,25 +428,25 @@ export default function AdminResultDetailPage() {
                   {dim.percentA}%
                 </span>
                 <div
-                  className="w-20 h-20 rounded-full flex items-center justify-center text-2xl font-black"
+                  className="w-20 h-20 rounded-full flex items-center justify-center text-lg font-black"
                   style={{
                     backgroundColor: aWins ? col.a : `${col.a}15`,
                     color: aWins ? "white" : col.a,
                     boxShadow: aWins ? `0 6px 20px ${col.a}40` : "none",
                   }}
                 >
-                  {dim.letterA}
+                  {LETTER_CODES[dim.letterA] ?? dim.letterA}
                 </div>
                 <div className="my-3 text-2xl font-bold" style={{ color: `${col.a}40` }}>↕</div>
                 <div
-                  className="w-20 h-20 rounded-full flex items-center justify-center text-2xl font-black"
+                  className="w-20 h-20 rounded-full flex items-center justify-center text-lg font-black"
                   style={{
                     backgroundColor: !aWins ? col.b : `${col.b}15`,
                     color: !aWins ? "white" : col.b,
                     boxShadow: !aWins ? `0 6px 20px ${col.b}40` : "none",
                   }}
                 >
-                  {dim.letterB}
+                  {LETTER_CODES[dim.letterB] ?? dim.letterB}
                 </div>
                 <span className="text-lg font-black mt-3" style={{ color: col.b }}>
                   {dim.percentB}%
@@ -473,10 +478,10 @@ export default function AdminResultDetailPage() {
                 <div key={dim.pair}>
                   <div className="flex justify-between text-xs font-semibold mb-1">
                     <span style={{ color: col.a }}>
-                      {dim.letterA} — {LETTER_NAMES[dim.letterA] || dim.nameA}
+                      {LETTER_CODES[dim.letterA] ?? dim.letterA} — {LETTER_NAMES[dim.letterA] || dim.nameA}
                     </span>
                     <span style={{ color: col.b }}>
-                      {LETTER_NAMES[dim.letterB] || dim.nameB} — {dim.letterB}
+                      {LETTER_NAMES[dim.letterB] || dim.nameB} — {LETTER_CODES[dim.letterB] ?? dim.letterB}
                     </span>
                   </div>
                   <div className="h-3 rounded-full bg-gray-100 overflow-hidden flex">
@@ -491,7 +496,7 @@ export default function AdminResultDetailPage() {
                   </div>
                   <div className="flex justify-between text-xs text-gray-400 mt-1">
                     <span>{dim.percentA}%</span>
-                    <span>{aWins ? dim.letterA : dim.letterB} wins</span>
+                    <span>{LETTER_CODES[aWins ? dim.letterA : dim.letterB] ?? (aWins ? dim.letterA : dim.letterB)} wins</span>
                     <span>{dim.percentB}%</span>
                   </div>
                 </div>
