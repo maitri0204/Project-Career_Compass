@@ -356,10 +356,10 @@ export default function AdminResultDetailPage() {
     <div className="animate-fade-in">
       {/* Back Button */}
       <button
-        onClick={() => router.push(`/admin/students/${studentId}/results`)}
+        onClick={() => router.push("/admin/dashboard")}
         className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-800 mb-6 transition-colors cursor-pointer"
       >
-        <ArrowLeft size={16} /> Back to {studentName}&apos;s Results
+        <ArrowLeft size={16} /> Back to Dashboard
       </button>
 
       {/* Student Tag */}
